@@ -28,46 +28,46 @@ const MongoStore = require('connect-mongo');
 
 const mapboxgl = require('mapbox-gl');
 
-const dbUrl = 'mongodb://localhost:27017/yelp-camp';
-mongoose.connect(dbUrl, {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false
-});
-
-const db = mongoose.connection;
-db.on ("error", console.error.bind(console, "Connection error:"));
-db.once("open", () => {
-    console.log("Database connected.");
-});
-
-// HERE'S THE MONGO Data Base CONNECTION
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const dbUrl = process.env.DB_URL;
-
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(dbUrl, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   }
+// const dbUrl = 'mongodb://localhost:27017/yelp-camp';
+// mongoose.connect(dbUrl, {
+// //   useNewUrlParser: true,
+// //   useCreateIndex: true,
+// //   useUnifiedTopology: true,
+// //   useFindAndModify: false
 // });
 
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
+// const db = mongoose.connection;
+// db.on ("error", console.error.bind(console, "Connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected.");
+// });
+
+// HERE'S THE MONGO Data Base CONNECTION
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const dbUrl = process.env.DB_URL;
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(dbUrl, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
 
 
 const app = express();
