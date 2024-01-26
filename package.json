@@ -25,7 +25,10 @@
     "nodemon": "^3.0.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
+<<<<<<< HEAD
     "passport-local-mongoose": "^8.0.0",
+=======
+>>>>>>> a6760a14a41a53fe61095c280ed5fa6ad818d205
     "webpack": "^5.89.0"
   }
 }
