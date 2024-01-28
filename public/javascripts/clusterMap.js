@@ -1,6 +1,6 @@
 
-    // mapboxgl.accessToken = 'mapToken';
-    mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+    mapboxgl.accessToken = 'mapToken';
+    // mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
     const map = new mapboxgl.Map({
         container: 'cluster-map',
         style: 'mapbox://styles/mapbox/light-v11',
