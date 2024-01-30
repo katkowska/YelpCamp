@@ -3,6 +3,7 @@ if(process.env.NODE_ENV !== "production") {
 };
 
 console.log(process.env.SECRET);
+console.log("Disclaimer: Portfolio built based on code from a Web Development course from Colt Steele.");
 
 const express = require('express');
 const path = require('path');
@@ -14,20 +15,20 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const Campground = require('./models/campground');
+const Venue = require('./models/venue');
 const User = require('./models/user');
 const helmet = require('helmet');
 
 const mongoSanitize = require('express-mongo-sanitize');
 
 const userRoutes = require('./routes/users');
-const campgroundRoutes = require('./routes/campgrounds');
+const venueRoutes = require('./routes/venues');
 const reviewRoutes = require('./routes/reviews');
 
 const mapboxgl = require('mapbox-gl');
 
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+mongoose.connect('mongodb://localhost:27017/gigaunty', {
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
 //   useUnifiedTopology: true,
@@ -111,9 +112,9 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(mongoSanitize({
-    replaceWith: '_'
-}));
+// app.use(mongoSanitize({
+//     replaceWith: '_'
+// }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -133,8 +134,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/', userRoutes);
-app.use('/campgrounds', campgroundRoutes);
-app.use('/campgrounds/:id/reviews', reviewRoutes);
+app.use('/venues', venueRoutes);
+app.use('/venues/:id/reviews', reviewRoutes);
 
 
 app.get('/', (req, res) => {
@@ -151,13 +152,13 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(3000, () => {
-    console.log('Serving on port 3000');
+app.listen(4000, () => {
+    console.log('Serving on port 4000');
 });
 
-app.put('/campgrounds/:id', async (req, res) => {
+app.put('/venues/:id', async (req, res) => {
     const { id } = req.params;
-    const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
-    res.redirect(`/campgrounds/${campground._id}`);
+    const venue = await Venue.findByIdAndUpdate(id, { ...req.body.venue });
+    res.redirect(`/venues/${venue._id}`);
 });
 

@@ -1,9 +1,8 @@
 
-    // mapboxgl.accessToken = 'mapToken';
-    mapboxgl.accessToken = 'pk.eyJ1Ijoia2F0Z2FsaWUiLCJhIjoiY2xyam0xOW84MDRnMzJxcWVjaWN6dTJ1YSJ9.5cnuj9xI5qYIwL2Q3V34dQ';
+    mapboxgl.accessToken = mapToken;
     const map = new mapboxgl.Map({
         container: 'cluster-map',
-        style: 'mapbox://styles/mapbox/light-v11',
+        style: 'mapbox://styles/mapbox/dark-v10',
         center: [-103.5917, 40.6699],
         zoom: 3
     });
@@ -11,10 +10,9 @@
     map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', () => {
-        map.addSource('campgrounds', {
+        map.addSource('venues', {
             type: 'geojson',
-            data: campgrounds,
-            // 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+            data: venues,
             cluster: true,
             clusterMaxZoom: 14, // Max zoom to cluster points on
             clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -23,7 +21,7 @@
         map.addLayer({
             id: 'clusters',
             type: 'circle',
-            source: 'campgrounds',
+            source: 'venues',
             filter: ['has', 'point_count'],
             paint: {
                 'circle-color': [
@@ -50,7 +48,7 @@
         map.addLayer({
             id: 'cluster-count',
             type: 'symbol',
-            source: 'campgrounds',
+            source: 'venues',
             filter: ['has', 'point_count'],
             layout: {
                 'text-field': ['get', 'point_count_abbreviated'],
@@ -62,7 +60,7 @@
         map.addLayer({
             id: 'unclustered-point',
             type: 'circle',
-            source: 'campgrounds',
+            source: 'venues',
             filter: ['!', ['has', 'point_count']],
             paint: {
                 'circle-color': '#11b4da',
@@ -78,7 +76,7 @@
                 layers: ['clusters']
             });
             const clusterId = features[0].properties.cluster_id;
-            map.getSource('campgrounds').getClusterExpansionZoom(
+            map.getSource('venues').getClusterExpansionZoom(
                 clusterId,
                 (err, zoom) => {
                     if (err) return;

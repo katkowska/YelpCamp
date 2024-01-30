@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const cities = require('./cities');
-const Campground = require('../models/campground');
+const Venue = require('../models/venue');
 const {places, descriptors} = require('./seedHelpers.js');
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+mongoose.connect('mongodb://localhost:27017/gigaunty', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -17,13 +17,13 @@ db.once("open", () => {
 });
 
 const seedDB = async () => {
-    await Campground.deleteMany({});
-    for (let i = 0; i < 300; i++) {
+    await Venue.deleteMany({});
+    for (let i = 0; i < 10; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
-        const price = Math.floor(Math.random() * 20) + 10;
-        const camp = new Campground({
+        const price = Math.floor(Math.random() * 100) + 100;
+        const ven = new Venue({
             // MY USER ID
-            author:'65a4053dcffba82fa5937380',
+            author:'65b8ff2ce2cc6b3dc8d10837',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -37,16 +37,16 @@ const seedDB = async () => {
             },
             images: [
                 {
-                    url: 'https://res.cloudinary.com/dtli3ahwf/image/upload/v1705581163/YelpCamp/kwruiwctbbtwqaynnadr.webp',
-                    filename: 'YelpCamp/kwruiwctbbtwqaynnadr',
+                    url: 'https://res.cloudinary.com/dtli3ahwf/image/upload/v1706624475/GigAunty/photo-1514320291840-2e0a9bf2a9ae_n9b8it.jpg',
+                    filename: 'GigAunty/photo-1514320291840-2e0a9bf2a9ae_n9b8it',
                 },
                 {
-                    url: 'https://res.cloudinary.com/dtli3ahwf/image/upload/v1705581343/YelpCamp/oa6isb9ragriq9vbacm9.webp',
-                    filename: 'YelpCamp/oa6isb9ragriq9vbacm9'
+                    url: 'https://res.cloudinary.com/dtli3ahwf/image/upload/v1706613181/GigAunty/long-truong-0hbiRNbMgM4-unsplash_myuwyl.jpg',
+                    filename: 'GigAunty/long-truong-0hbiRNbMgM4-unsplash_myuwyl'
                 }
               ],
         });
-        await camp.save();
+        await ven.save();
     }
 };
 

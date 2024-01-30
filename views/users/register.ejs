@@ -1,40 +1,85 @@
-<% layout('layouts/boilerplate')%>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container d-flex justify-content-center align-items-center mt-5">
-    <div class="row">
-        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-            <div class="card shadow">
-                <img src="https://images.unsplash.com/photo-1463693396721-8ca0cfa2b3b5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3w5Njg5MzUyfHxlbnwwfHx8fHw%3D"
-                    alt="" class="card-img-top" />
-                <div class="card-body">
-                    <h5 class="card-title">Register</h5>
-                    <form action="/register" method="POST" class="validated-form" novalidate>
-                        <div class="mb-3">
-                            <label class="form-label" for="username">Username</label>
-                            <input class="form-control" type="text" id="username" name="username" required autofocus>
-                            <div class="valid-feedback">
-                                Correct input.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" required>
-                            <div class="valid-feedback">
-                                Correct input.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
-                            <div class="valid-feedback">
-                                Correct input.
-                            </div>
-                        </div>
-                        <button class="btn btn-success btn-block">Register</button>
-                    </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigAunty Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+</head>
 
+<body class="d-flex text-center bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto text-white">
+            <div>
+                <h3 class="float-md-left mb-0">GigAunty</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-right">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/venues">Venues</a>
+                    <% if(!currentUser) { %>
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/register">Register</a>
+                    <% } else { %>
+                    <a class="nav-link" href="/logout">Logout</a>
+                    <% } %>
+                </nav>
+            </div>
+        </header>
+        <div class="container justify-content-center align-items mt-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-left">
+                    <div class="card shadow">
+                        <!-- <img src="https://res.cloudinary.com/dtli3ahwf/image/upload/v1706620763/GigAunty/photo-1549761505-ce78ee8354d2_spph7k.jpg"
+                            alt="" class="card-img-top" /> -->
+                        <div class="card-body">
+                            <h5 class="card-title">Register</h5>
+                            <form action="/register" method="POST" class="validated-form" novalidate>
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">Username</label>
+                                    <input class="form-control" type="text" id="username" name="username" required autofocus>
+                                    <div class="valid-feedback">
+                                        All good!
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input class="form-control" type="email" id="email" name="email" required>
+                                    <div class="valid-feedback">
+                                        All good!
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input class="form-control" type="password" id="password" name="password" required>
+                                    <div class="valid-feedback">
+                                        All good!
+                                    </div>
+                                </div>
+                                <button class="btn btn-success btn-block">Register</button>
+                            </form>
+        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <footer class="mt-auto text-white">
+            <p>&copy; 2024 </p>
+        </footer>
+
+
     </div>
-</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
