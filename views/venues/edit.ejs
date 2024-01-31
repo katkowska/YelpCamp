@@ -1,6 +1,6 @@
     <% layout('/layouts/boilerplate')%>  
     <div class="row">
-        <h1 class="text-center">Edit venue</h1>
+        <h1 class="lead text-center">Edit venue</h1>
         <div class="col-md-6 offset-md-3">
             <form action="/venues/<%=venue._id%>?_method=PUT" method="POST" novalidate class="validated-form" 
                 enctype="multipart/form-data">
@@ -19,7 +19,7 @@
                     <input class="form-control" type="file" name="image" id="image" multiple>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="price">Concert rate</label>
+                    <label class="form-label" for="price">Average concert rate</label>
                     <div class="input-group">
                     <span class="input-group-text" id="price-label">$</span>
                     <input type="number" class="form-control" placeholder="0.00" id="price" aria-label="price" aria-describedby="price-label" name="venue[price]" value="<%= venue.price %>" required>
