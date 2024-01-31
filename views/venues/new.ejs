@@ -1,6 +1,6 @@
 <% layout('/layouts/boilerplate')%>  
 <div class="row">
-    <h1 class="text-center">New Concert Venue</h1>
+    <h1 class="lead text-center">New Concert Venue</h1>
     <div class="col-md-6 offset-md-3">
         <form action="/venues" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
@@ -23,7 +23,7 @@
                 <div class="valid-feedback">Correct input</div>
             </div> -->
             <div class="mb-3">
-                <label class="form-label" for="price">venue price</label>
+                <label class="form-label" for="price">Average payout per night</label>
                 <div class="input-group">
                 <span class="input-group-text" id="price-label">$</span>
                 <input type="number" class="form-control" placeholder="0.00" id="price" aria-label="price" aria-describedby="price-label" name="venue[price]" required>
